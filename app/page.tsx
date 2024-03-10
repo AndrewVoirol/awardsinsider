@@ -1,40 +1,31 @@
-import React from 'react';
-import { GetStaticProps } from 'next';
+import { useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
 
-// Define the Movie interface with the correct properties
 interface Movie {
-  id: number; // Added id property to match TMDB data
   title: string;
   release_date: string;
   poster_path: string;
   overview: string;
-  genres: string[]; // Assuming TMDB returns genres as strings
+  genres: string[];
 }
 
-// Define the PageProps interface
-interface PageProps {
-  movies: Movie[];
-}
+export default function HomePage() {
+  const [movies, setMovies] = useState<Movie[]>([]);
 
-// The HomePage component receives movies as props and renders MovieList
-export default function HomePage({ movies }: PageProps) {
+  useEffect(() => {
+    // Fetch movie data on the server using getServerSideProps
+  }, []);
+
   return (
-    <div>
-      <Head>
-        <title>Movie App</title>
-      </Head>
-
-      <main className="container mx-auto p-6">
-        <h1 className="text-3xl font-bold mb-6">Movies Released in 2023 and 2024</h1>
-        <MovieList movies={movies} />
-      </main>
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6">Movies (2023 - 2024)</h1>
+      <MovieList movies={movies} />
     </div>
   );
 }
 
-// getStaticProps fetches movie data at build time
-export const getStaticProps = async () => {
+// getServerSideProps fetches movie data on the server for each request
+export const getServerSideProps = async () => {
   try {
     const apiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY;
     const currentYear = new Date().getFullYear();
@@ -47,10 +38,9 @@ export const getStaticProps = async () => {
     const data2023 = await movies2023.json();
     const data2024 = await movies2024.json();
 
-    // Ensure the returned data matches the Movie interface
     const movies: Movie[] = [
-      ...data2023.results.map((movie: any) => ({ ...movie, id: movie.id })), // Add id if needed
-      ...data2024.results.map((movie: any) => ({ ...movie, id: movie.id })), // Add id if needed
+      ...data2023.results,
+      ...data2024.results,
     ];
 
     return {
