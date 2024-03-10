@@ -1,16 +1,19 @@
-import React from 'react';
+// app/layout.tsx
 
+import React from 'react';
+import Head from 'next/head'; // Import Head for setting page metadata
+
+// Functional component for the root layout
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html>
-      <Head>
-        <title>Movie App</title>
-      </Head>
-      <body className="bg-gray-100 dark:bg-gray-900">
-        {/* Add header, navigation, etc. here */}
-        {children}
-        {/* Add footer here */}
-      </body>
-    </html>
+    
+      
+        {/* Set page title and other metadata here */}
+        
+      
+      
+        {children} {/* Render the content passed as children */}
+      
+    
   );
 }
