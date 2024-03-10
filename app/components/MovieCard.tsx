@@ -1,12 +1,16 @@
 import React from 'react';
-import Image from 'next/image';
+import MovieCard from './MovieCard';
 
-interface MovieCardProps {
+interface Movie {
   title: string;
-  releaseDate: string;
-  posterPath: string;
+  release_date: string;
+  poster_path: string;
   overview: string;
   genres: string[]; // Or { id: number; name: string }[] if TMDB returns objects
 }
 
-const MovieCard: React.FC
+interface MovieListProps {
+  movies: Movie[];
+}
+
+const MovieList: React.FC 
