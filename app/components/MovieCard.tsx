@@ -1,16 +1,14 @@
 import React from 'react';
-import MovieCard from './MovieCard';
+import Image from 'next/image';
 
-interface Movie {
+// Define the MovieCardProps interface with the correct genres type
+interface MovieCardProps {
   title: string;
-  release_date: string;
-  poster_path: string;
+  releaseDate: string;
+  posterPath: string;
   overview: string;
-  genres: string[]; // Or { id: number; name: string }[] if TMDB returns objects
+  genres: string[]; // Genres are strings
 }
 
-interface MovieListProps {
-  movies: Movie[];
-}
-
-const MovieList: React.FC 
+// The MovieCard component renders a single movie card
+const MovieCard: React.FC

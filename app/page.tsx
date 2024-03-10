@@ -2,22 +2,22 @@ import React from 'react';
 import { GetStaticProps } from 'next';
 import MovieList from './components/MovieList';
 
-// Define the Movie interface to ensure type safety
+// Define the Movie interface with the correct properties
 interface Movie {
-  id: number;
+  id: number; // Added id property to match TMDB data
   title: string;
   release_date: string;
   poster_path: string;
   overview: string;
-  genres: string[]; // Or { id: number; name: string }[] if TMDB returns objects
+  genres: string[]; // Assuming TMDB returns genres as strings
 }
 
-// Define the PageProps interface to specify the expected props for the page
+// Define the PageProps interface
 interface PageProps {
   movies: Movie[];
 }
 
-// The HomePage component receives movies as props and renders MovieCard components
+// The HomePage component receives movies as props and renders MovieList
 export default function HomePage({ movies }: PageProps) {
   return (
     
@@ -41,7 +41,10 @@ export const getStaticProps = async () => {
     const data2024 = await movies2024.json();
 
     // Ensure the returned data matches the Movie interface
-    const movies: Movie[] = [...data2023.results, ...data2024.results];
+    const movies: Movie[] = [
+      ...data2023.results.map((movie: any) => ({ ...movie, id: movie.id })), // Add id if needed
+      ...data2024.results.map((movie: any) => ({ ...movie, id: movie.id })), // Add id if needed
+    ];
 
     return {
       props: {
