@@ -13,4 +13,14 @@ interface MovieListProps {
   movies: Movie[];
 }
 
-const MovieList: React.FC
+const MovieList: React.FC<MovieListProps> = ({ movies }) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} {...movie} />
+      ))}
+    </div>
+  );
+};
+
+export default MovieList;

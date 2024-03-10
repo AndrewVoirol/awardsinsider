@@ -20,9 +20,16 @@ interface PageProps {
 // The HomePage component receives movies as props and renders MovieList
 export default function HomePage({ movies }: PageProps) {
   return (
-    
-      Movies Released in 2023 and 2024
-      
+    <div>
+      <Head>
+        <title>Movie App</title>
+      </Head>
+
+      <main className="container mx-auto p-6">
+        <h1 className="text-3xl font-bold mb-6">Movies Released in 2023 and 2024</h1>
+        <MovieList movies={movies} />
+      </main>
+    </div>
   );
 }
 
