@@ -4,6 +4,7 @@ import MovieList from './components/MovieList';
 
 // Define the Movie interface to ensure type safety
 interface Movie {
+  id: number;
   title: string;
   release_date: string;
   poster_path: string;

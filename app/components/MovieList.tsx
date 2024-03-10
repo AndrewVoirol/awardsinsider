@@ -1,3 +1,4 @@
+import MovieCard from './MovieCard';
 import React from 'react';
 
 interface Movie {
@@ -5,7 +6,7 @@ interface Movie {
   release_date: string;
   poster_path: string;
   overview: string;
-  genres: { id: number; name: string }[]; // Or string[] if TMDB returns strings
+  genres: string[];
 }
 
 interface MovieListProps {
