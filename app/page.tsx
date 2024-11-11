@@ -25,7 +25,7 @@ export default function HomePage({ movies }: HomePageProps) {
         <h1 className="text-3xl font-bold mb-6">Movies (2023 - 2024)</h1>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {movies.map((movie) => (
-            <MovieCard key={movie.id} {...movie} />
+            <MovieCard releaseDate={''} posterPath={''} key={movie.id} {...movie} />
           ))}
         </div>
       </main>
