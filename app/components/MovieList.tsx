@@ -1,5 +1,3 @@
-//app/components/MovieList.tsx
-
 import React from 'react';
 import MovieCard from './MovieCard';
 
@@ -19,4 +17,14 @@ interface MovieListProps {
 }
 
 // Functional component to render a list of movie cards
-const MovieList: React.FC
+const MovieList: React.FC<MovieListProps> = ({ movies }) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} {...movie} />
+      ))}
+    </div>
+  );
+};
+
+export default MovieList;
