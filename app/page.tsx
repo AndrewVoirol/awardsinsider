@@ -38,7 +38,7 @@ export async function getStaticProps() {
   const movies: Movie[] = [];
 
   for (let year = currentYear - 1; year <= currentYear; year++) {
-    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=90078f06850b34ab16852c1885abc47d&primary_release_year=${year}`);
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key="PUT_YOUR_KEY"&primary_release_year=${year}`);
     const data = await response.json();
 
     if (data.results) {
